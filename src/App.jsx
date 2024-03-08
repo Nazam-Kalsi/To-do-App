@@ -5,7 +5,9 @@ import { useState } from "react";
 
 function App() {
   let [todos, setTodos] = useState([]);
-  todos.forEach((i)=>{console.log(i.text);})
+  todos.forEach((i) => {
+    console.log(i.text);
+  });
 
   let addTodo = (text) => {
     setTodos([{ id: Date.now(), text, completed: false }, ...todos]);
@@ -16,7 +18,9 @@ function App() {
   };
 
   let edit = (id, t) => {
-    setTodos(prev => prev.map(item => item.id == id ? { ...item, text: t } : item));
+    setTodos((prev) =>
+      prev.map((item) => (item.id == id ? { ...item, text: t } : item))
+    );
   };
 
   let toggleComplete = (id) => {
@@ -28,16 +32,17 @@ function App() {
   };
 
   return (
-    <TodoContextProvider
-      value={{ todos, addTodo, removeTodo, edit, toggleComplete }}
-    >
-      <Input />
-      {
-      todos.map((item) => {
-        return <Todo key={item.id} todo={item} />;
-      }
-      )}
-    </TodoContextProvider>
+    <div className="min-h-80  p-4 ">
+      <p className=" text-center mb-4 text-4xl font-bold text-white">TODO</p>
+      <TodoContextProvider
+        value={{ todos, addTodo, removeTodo, edit, toggleComplete }}>
+        <Input />
+
+        {todos.map((item) => {
+          return <Todo key={item.id} todo={item} />;
+        })}
+      </TodoContextProvider>
+    </div>
   );
 }
 

@@ -11,14 +11,14 @@ function Todo({ todo }) {
   }
   return (
     <>
-      <div>
+      <div className=" p-4 flex justify-center">
         <input type="checkbox" onChange={() => toggleComplete(todo.id)} />
         <input
           type="text"
           className={
            `${(todo.completed)
-              ? "bg-green-100 text-black line-through"
-              : "bg-transparent" }`
+              ? "bg-green-300 text-black line-through"
+              : "bg-transparent" } min-w-3.5  w-3/4 p-2 text-xl rounded-md ${(!editable)?'outline-none':""} `
           }
           value={val}
           onChange={(e) => setVal(e.target.value)}
